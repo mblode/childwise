@@ -1,5 +1,5 @@
-.ml-2 {
-  margin-left: -2rem;
+.ml-1 {
+  margin-left: -1rem;
 }
 
 .dots {
@@ -12,11 +12,40 @@
   font-weight: 400;
   font-style: italic;
   font-size: 28px;
-  letter-spacing: .6em;
+  letter-spacing: 0.6em;
   content: '...';
   display: inline-block;
-  margin-left: .6em;
-  color: rgba(0,0,0,.6);
+  margin-left: 0.6em;
   position: relative;
-  top: -30px;
+  top: -26px;
+}
+
+.line {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+p {
+  margin-top: 0;
+}
+
+.links a {
+  color: rgba(0, 0, 0, 0.8);
+  transition: color 0.15s ease-in;
+  text-decoration: none;
+  background-image: linear-gradient(#fff 50%, rgba(0, 0, 0, 0.8) 50%);
+  background-repeat: repeat-x;
+  background-position: 0 1rem;
+  background-size: 1px 1px;
+
+  &:hover,
+  &:focus {
+    color: rgba(0, 0, 0, 0.5);
+    background-image: linear-gradient(#fff 50%, rgba(0, 0, 0, 0.5) 50%);
+    text-decoration: none;
+  }
+}
+
+.mw-narrow {
+  max-width: 650px;
 }

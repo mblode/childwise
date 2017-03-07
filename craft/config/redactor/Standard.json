@@ -1,4 +1,8 @@
 {
-	"buttons": ["format","bold","italic","lists","link","file","horizontalrule"],
-	"plugins": ["source","fullscreen"]
+  "buttons": ["format","bold","italic","lists","link"],
+  "plugins": ["source","fullscreen"],
+  "formattingAdd": [{
+    "title": "Red Block",
+    "args": ["p", "class", "red-styled"]
+  }]
 }

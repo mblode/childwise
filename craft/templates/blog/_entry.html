@@ -3,52 +3,55 @@
 {% block main %}
 
 
-<article class="php-3 ph5-ns pb5">
-  <div class="mw7 center">
-    <h1 class="f2 lh-title">{{entry.title | typogrify}}</h2>
-    {% if entry.subtitle | length %}
-      <h2 class="f3 lh-title normal gray">{{entry.subtitle | typogrify}}</h2>
-    {% endif %}
+<article class="ph3 pt3 pt4-ns">
+<h1 class="f3 f2-m f1-l tc lh-solid measure center mb4">{{entry.title | typogrify}}</h1>
+  <div class="mw-narrow center">
+    <p class="f6 ttu tracked black-50 tc mb4">
+      <span>By {{entry.author.fullName}}</span>
+      &middot; 
+      <span class="di dn-ns">{{ entry.postDate | date("M d, Y") }}</span>
+      <span class="dn di-ns">{{ entry.postDate | date("F d, Y") }}</span></p>
+    <hr class="mb4 line">
   </div>
 
   {% for block in entry.blog %}
 
     {% if block.type == "lead" %}
 
-      <div class="mw7 center">
-        <p class="lh-copy fw1 mv0 f4 f3-l">{{block.lead | typogrify}}</p>
+      <div class="mw-narrow center links">
+        <div class="f4 lh-copy b mb5">{{block.lead | typogrify}}</div>
       </div>
 
     {% elseif block.type == "body" %}
 
-      <div class="f4 mw7 center lh-copy mb4">
+      <div class="f5 mw-narrow center lh-copy mb5 links">
         {{block.body}}
       </div>
 
     {% elseif block.type == "heading" %}
 
-      <div class="mw7 center">
-        <h3 class="{{block.headingSize}}">{{block.heading | typogrify}}</h3>
+      <div class="mw-narrow center">
+      <h3 class="{{block.headingSize}} mb2">{{block.heading | typogrify}}</h3>
       </div>
 
     {% elseif block.type == "quotation" %}
 
       {% if block.quotationStyle == 'pulling' %}
 
-        <blockquote class="mh0 pr0 mt5">
-          <div class="f2 f1-l fw1 mv0 tc lh-title">{{block.quotation }}</div>
+        <blockquote class="mw7 center mh0 pr0 mb5">
+        <div class="f4 f3-ns lh-title links">{{block.quotation}}</div>
           {% if block.cite | length %}
-            <cite class="tc f6 gray">{{block.cite}}</cite>
+            <cite class="f6 ttu tracked fs-normal black-50">―{{block.cite}}</cite>
           {% endif %}
         </blockquote>
       
       {% elseif block.quotationStyle == 'blocking' %}
 
-        <div class="mw7 center pb2 pl0">
-          <blockquote class="ml-2 mt0 pl4 bl bw2 b--black">
-            <div class="f4 lh-copy mt0">{{block.quotation}}</div>
+        <div class="mw-narrow center mb5 pl0">
+          <blockquote class="ml-1 mr2 mt0 pl3 bl bw2 b--dark-gray">
+            <div class="f5 lh-copy mt0 links">{{block.quotation}}</div>
             {% if block.cite | length %}
-              <cite class="f6 ttu tracked fs-normal">―{{block.cite}}</cite>
+              <cite class="f6 ttu tracked fs-normal black-50">―{{block.cite}}</cite>
             {% endif %}
           </blockquote>
         </div>
@@ -66,59 +69,53 @@
       ], 
       { format: 'jpg', allowUpscale: false, mode: 'crop', jpegQuality: 80, position: image.focusPctX ~ '% ' ~ image.focusPctY ~ '%', interlace: true } ) %}
 
-      {% if block.photographPosition.contains('left') %}
-        <figure class="mb4 ml4">
-          <img class="mw6 lazyload"
+      {% if block.photographPosition.contains('small') %}
+        <figure class="mw6 center mb5">
+          <img class="w-100 lazyload"
           src="{{craft.imager.base64Pixel(2,1)}}"
           data-sizes="100vw"
           data-srcset="{{craft.imager.srcset(transformedImages)}}"
           alt="">
+          <figcaption class="f6 black-50 tc mt2">{{block.caption}}</figcaption>
         </figure>
 
       {% elseif block.photographPosition.contains('center') %}
 
-        <div class="mw7 center mb4">
+        <figure class="mw-narrow center mb5">
           <img class="w-100 lazyload"
           src="{{craft.imager.base64Pixel(2,1)}}"
           data-sizes="100vw"
           data-srcset="{{craft.imager.srcset(transformedImages)}}"
           alt="">
-        </div>
+          <figcaption class="f6 black-50 tc mt2">{{block.caption}}</figcaption>
+        </figure>
 
       {% elseif block.photographPosition.contains('outsetCenter') %}
 
-        <div class="mw8 center mb4">
+        <figure class="mw7 center mb5">
           <img class="w-100 lazyload"
           src="{{craft.imager.base64Pixel(2,1)}}"
           data-sizes="100vw"
           data-srcset="{{craft.imager.srcset(transformedImages)}}"
           alt="">
-        </div>
-
-      {% elseif block.photographPosition.contains('fillWidth') %}
-        <div class="mb4">
-          <img class="w-100 lazyload"
-          src="{{craft.imager.base64Pixel(2,1)}}"
-          data-sizes="100vw"
-          data-srcset="{{craft.imager.srcset(transformedImages)}}"
-          alt="">
-        </div>
+          <figcaption class="f6 black-50 tc mt2">{{block.caption}}</figcaption>
+        </figure>
 
       {% endif %}
 
     {% elseif block.type == "code" %}
 
-      <pre>
-        <code>{{block.code}}</code>
-      </pre>
+      <div class="mw-narrow center mb5">
+        <pre class="pre bg-black-05 pa3"><code>{{block.code}}</code></pre>
+      </div>
 
     {% elseif block.type == "divider" %}
 
-      <div class="mw7 center">
+      <div class="mw-narrow center">
         {% if block.divider == 'dots' %}
-          <hr class="mv4 dots">
+          <hr class="mb5 pt2 dots black-50">
         {% elseif block.divider == 'line' %}
-          <hr class="mv4">
+          <hr class="mb5 line">
         {% endif %}
       </div>
 
@@ -132,8 +129,8 @@
 
       {% set service = block.video|lower|replace('/(http:|https:|)\\/\\/(player.|www.)?(vimeo\\.com|youtu(be\\.com|\\.be|be\\.googleapis\\.com))\\/(video\\/|embed\\/|watch\\?v=|v\\/)?([A-Za-z0-9._%-]*)(\\&\\S+)?/', '$3') %}
 
-      <div class="mw7 center mb4">
-        <div class="aspect-ratio aspect-ratio--16x9 mw7 center">
+      <div class="mw-narrow center mb5">
+        <div class="aspect-ratio aspect-ratio--16x9 mw-narrow center">
           {% if 'youtu' in service %}
       
             <iframe src="https://www.youtube.com/embed/{{id}}" frameborder="0" allowFullScreen class="aspect-ratio--object"></iframe>
@@ -150,19 +147,5 @@
 
   {% endfor %}
 </article>
-
-{% for tag in craft.tags.group('blog') %}
-  <li><a href="{{ url('blog/tags/'~tag.id) }}">{{ tag.title }}</a></li>
-{% endfor %}
-
-{% set tags = entry.tags %}
-
-{% if tags | length %}
-
-  {% for tag in tags %}
-    <a href="{{ url('blog/tags/'~tag.id) }}" class="f6 link br2 ph3 pv2 mb2 dib bg-light-gray hover-bg-light-silver">{{ tag.title }}</a>
-  {% endfor %}
-
-{% endif %}
 
 {% endblock %}

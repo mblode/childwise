@@ -1,0 +1,43 @@
+@font-face {
+  font-family: 'Arnhem';
+  src:
+    url('../fonts/subset-Arnhem-Bold.woff2') format('woff2'),
+    url('../fonts/subset-Arnhem-Bold.woff') format('woff'),
+    url('../fonts/subset-Arnhem-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Arnhem';
+  src:
+    url('../fonts/subset-Arnhem-BoldItalic.woff2') format('woff2'),
+    url('../fonts/subset-Arnhem-BoldItalic.woff') format('woff'),
+    url('../fonts/subset-Arnhem-BoldItalic.ttf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Arnhem';
+  src:
+    url('../fonts/subset-Arnhem-Normal.woff2') format('woff2'),
+    url('../fonts/subset-Arnhem-Normal.woff') format('woff'),
+    url('../fonts/subset-Arnhem-Normal.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Arnhem';
+  src:
+    url('../fonts/subset-Arnhem-NormalItalic.woff2') format('woff2'),
+    url('../fonts/subset-Arnhem-NormalItalic.woff') format('woff'),
+    url('../fonts/subset-Arnhem-NormalItalic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+.custom-serif {
+  font-family: 'Arnhem', georgia, times, serif;
+}
