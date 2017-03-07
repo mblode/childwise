@@ -1,0 +1,22 @@
+.ml-2 {
+  margin-left: -2rem;
+}
+
+.dots {
+  display: block;
+  border: 0;
+  text-align: center;
+}
+
+.dots::before {
+  font-weight: 400;
+  font-style: italic;
+  font-size: 28px;
+  letter-spacing: .6em;
+  content: '...';
+  display: inline-block;
+  margin-left: .6em;
+  color: rgba(0,0,0,.6);
+  position: relative;
+  top: -30px;
+}

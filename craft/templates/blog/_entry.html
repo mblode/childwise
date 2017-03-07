@@ -1,0 +1,168 @@
+{% extends "_layouts/site" %}
+
+{% block main %}
+
+
+<article class="php-3 ph5-ns pb5">
+  <div class="mw7 center">
+    <h1 class="f2 lh-title">{{entry.title | typogrify}}</h2>
+    {% if entry.subtitle | length %}
+      <h2 class="f3 lh-title normal gray">{{entry.subtitle | typogrify}}</h2>
+    {% endif %}
+  </div>
+
+  {% for block in entry.blog %}
+
+    {% if block.type == "lead" %}
+
+      <div class="mw7 center">
+        <p class="lh-copy fw1 mv0 f4 f3-l">{{block.lead | typogrify}}</p>
+      </div>
+
+    {% elseif block.type == "body" %}
+
+      <div class="f4 mw7 center lh-copy mb4">
+        {{block.body}}
+      </div>
+
+    {% elseif block.type == "heading" %}
+
+      <div class="mw7 center">
+        <h3 class="{{block.headingSize}}">{{block.heading | typogrify}}</h3>
+      </div>
+
+    {% elseif block.type == "quotation" %}
+
+      {% if block.quotationStyle == 'pulling' %}
+
+        <blockquote class="mh0 pr0 mt5">
+          <div class="f2 f1-l fw1 mv0 tc lh-title">{{block.quotation }}</div>
+          {% if block.cite | length %}
+            <cite class="tc f6 gray">{{block.cite}}</cite>
+          {% endif %}
+        </blockquote>
+      
+      {% elseif block.quotationStyle == 'blocking' %}
+
+        <div class="mw7 center pb2 pl0">
+          <blockquote class="ml-2 mt0 pl4 bl bw2 b--black">
+            <div class="f4 lh-copy mt0">{{block.quotation}}</div>
+            {% if block.cite | length %}
+              <cite class="f6 ttu tracked fs-normal">―{{block.cite}}</cite>
+            {% endif %}
+          </blockquote>
+        </div>
+
+      {% endif %}
+
+    {% elseif block.type == "photograph" %}
+
+      {% set image = block.photograph.first() %} 
+      {% set transformedImages = craft.imager.transformImage(image, 
+      [ 
+        { width: 1000 }, 
+        { width: 700 }, 
+        { width: 400, jpegQuality: 65 }, 
+      ], 
+      { format: 'jpg', allowUpscale: false, mode: 'crop', jpegQuality: 80, position: image.focusPctX ~ '% ' ~ image.focusPctY ~ '%', interlace: true } ) %}
+
+      {% if block.photographPosition.contains('left') %}
+        <figure class="mb4 ml4">
+          <img class="mw6 lazyload"
+          src="{{craft.imager.base64Pixel(2,1)}}"
+          data-sizes="100vw"
+          data-srcset="{{craft.imager.srcset(transformedImages)}}"
+          alt="">
+        </figure>
+
+      {% elseif block.photographPosition.contains('center') %}
+
+        <div class="mw7 center mb4">
+          <img class="w-100 lazyload"
+          src="{{craft.imager.base64Pixel(2,1)}}"
+          data-sizes="100vw"
+          data-srcset="{{craft.imager.srcset(transformedImages)}}"
+          alt="">
+        </div>
+
+      {% elseif block.photographPosition.contains('outsetCenter') %}
+
+        <div class="mw8 center mb4">
+          <img class="w-100 lazyload"
+          src="{{craft.imager.base64Pixel(2,1)}}"
+          data-sizes="100vw"
+          data-srcset="{{craft.imager.srcset(transformedImages)}}"
+          alt="">
+        </div>
+
+      {% elseif block.photographPosition.contains('fillWidth') %}
+        <div class="mb4">
+          <img class="w-100 lazyload"
+          src="{{craft.imager.base64Pixel(2,1)}}"
+          data-sizes="100vw"
+          data-srcset="{{craft.imager.srcset(transformedImages)}}"
+          alt="">
+        </div>
+
+      {% endif %}
+
+    {% elseif block.type == "code" %}
+
+      <pre>
+        <code>{{block.code}}</code>
+      </pre>
+
+    {% elseif block.type == "divider" %}
+
+      <div class="mw7 center">
+        {% if block.divider == 'dots' %}
+          <hr class="mv4 dots">
+        {% elseif block.divider == 'line' %}
+          <hr class="mv4">
+        {% endif %}
+      </div>
+
+    {% elseif block.type == "lead" %}
+
+      <p class="f4">{{block.lead | typogrify}}</h3>
+    
+    {% elseif block.type == "video" %}
+
+      {% set id = block.video|replace('/(http:|https:|)\\/\\/(player.|www.)?(vimeo\\.com|youtu(be\\.com|\\.be|be\\.googleapis\\.com))\\/(video\\/|embed\\/|watch\\?v=|v\\/)?([A-Za-z0-9._%-]*)(\\&\\S+)?/', '$6') %}
+
+      {% set service = block.video|lower|replace('/(http:|https:|)\\/\\/(player.|www.)?(vimeo\\.com|youtu(be\\.com|\\.be|be\\.googleapis\\.com))\\/(video\\/|embed\\/|watch\\?v=|v\\/)?([A-Za-z0-9._%-]*)(\\&\\S+)?/', '$3') %}
+
+      <div class="mw7 center mb4">
+        <div class="aspect-ratio aspect-ratio--16x9 mw7 center">
+          {% if 'youtu' in service %}
+      
+            <iframe src="https://www.youtube.com/embed/{{id}}" frameborder="0" allowFullScreen class="aspect-ratio--object"></iframe>
+
+          {% else %}
+
+            <iframe src="https://player.vimeo.com/video/{{id}}?title=0&byline=0&portrait=0&color=00ab55&loop=1" frameborder="0" allowFullScreen class="aspect-ratio--object"></iframe>
+          
+          {% endif %}
+        </div>
+      </div>
+
+    {% endif %}
+
+  {% endfor %}
+</article>
+
+{% for tag in craft.tags.group('blog') %}
+  <li><a href="{{ url('blog/tags/'~tag.id) }}">{{ tag.title }}</a></li>
+{% endfor %}
+
+{% set tags = entry.tags %}
+
+{% if tags | length %}
+
+  {% for tag in tags %}
+    <a href="{{ url('blog/tags/'~tag.id) }}" class="f6 link br2 ph3 pv2 mb2 dib bg-light-gray hover-bg-light-silver">{{ tag.title }}</a>
+  {% endfor %}
+
+{% endif %}
+
+{% endblock %}
