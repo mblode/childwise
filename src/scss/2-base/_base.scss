@@ -20,6 +20,12 @@
   top: -26px;
 }
 
+@media screen and (max-width: 30em) {
+  .f5 {
+    font-size: 1.125rem;
+  }
+}
+
 .line {
   border: none;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
