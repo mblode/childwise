@@ -4,13 +4,14 @@
 
 
 <article class="ph3 pt3 pt4-ns">
-<h1 class="f3 f2-m f1-l tc lh-solid measure center mb4">{{entry.title | typogrify}}</h1>
+  <h1 class="f3 f2-m f1-l tc lh-solid mw-large center mt0 mb4">{{entry.title | typogrify}}</h1>
   <div class="mw-narrow center">
     <p class="f6 ttu tracked black-50 tc mb4">
       <span>By {{entry.author.fullName}}</span>
       &middot; 
       <span class="di dn-ns">{{ entry.postDate | date("M d, Y") }}</span>
-      <span class="dn di-ns">{{ entry.postDate | date("F d, Y") }}</span></p>
+      <span class="dn di-ns">{{ entry.postDate | date("F d, Y") }}</span>
+    </p>
     <hr class="mb4 line">
   </div>
 

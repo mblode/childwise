@@ -2,16 +2,14 @@
 
 {% block main %}
 
-{% for entry in craft.entries.section('blog') %}
-
-<div class="php-3 ph5-ns pb5">
-  <article>
-    <a href="{{entry.url}}" class="f5 fw4 dim link blue pv1">
-      <h2 class="f2 fw7 ttu tracked">{{entry.title}}</h2>
+<div class="ph3 pt4 mw-narrow center">
+  {% for entry in craft.entries.section('blog') %}
+    <p class="f6 ttu tracked black-50 mb3">{{ entry.postDate | date("F d, Y") }}</p>
+    <a href="{{entry.url}}" class="link black-90 hover-blue">
+      <h2 class="f3 f2-ns lh-solid mt0 mb4">{{entry.title | typogrify}}</h2>
     </a>
-  </article>
+    <hr class="line mb4">
+  {% endfor %}
 </div>
-
-{% endfor %}
 
 {% endblock %}

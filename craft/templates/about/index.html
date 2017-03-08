@@ -1,0 +1,13 @@
+{% extends "_layouts/site" %}
+
+{% block main %}
+
+<article class="ph3 pt3 pt4-ns">
+  <h1 class="f3 f2-m f1-l tc lh-solid mw-large center mb4">{{entry.title | typogrify}}</h1>
+
+  <div class="mw-narrow center links">
+    <div class="f5 lh-copy mb5">{{entry.body}}</div>
+  </div>
+</article>
+
+{% endblock %}
