@@ -5,7 +5,7 @@
 <div class="ph3 pt4 mw-narrow center">
   {% for entry in craft.entries.section('blog') %}
     <p class="f6 ttu tracked black-50 mb3">{{ entry.postDate | date("F d, Y") }}</p>
-    <a href="{{entry.url}}" class="link black-90 hover-blue">
+    <a href="{{entry.url}}" class="link black-80 hover-blue">
       <h2 class="f3 f2-ns lh-solid mt0 mb4">{{entry.title | typogrify}}</h2>
     </a>
     <hr class="line mb4">
