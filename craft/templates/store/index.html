@@ -1,0 +1,35 @@
+{% extends "_layouts/site" %}
+
+{% block main %}
+  <div class="ph3 pt4 mw-narrow center">
+    <h1 class="f2 lh-solid mb2">Store</h1>
+
+    <div class="snipcart-summary mb4 f5 lh-copy links">
+      Number of items: <span class="snipcart-total-items"></span>
+      Total price: <span class="snipcart-total-price"></span>
+      <a href="#" class="snipcart-checkout">Checkout</a>
+    </div>
+
+    <hr class="line mb4">
+
+    {% for entry in craft.entries.section('store').find() %}
+      <article>
+        <h3 class="f4 lh-title mb2 ttu tracked">{{ entry.title }}</h3>
+        <p class="f5 lh-copy mb2">{{entry.description}}</p>
+
+          <p class="f3 lh-copy mb2 black-50 b">${{entry.price}}</p>
+          <a href="#"
+            class="snipcart-add-item link dim dib ba ph3 pv2 black-80 mb4"
+            data-item-id="{{ entry.slug }}"
+            data-item-name="{{ entry.title }}"
+            data-item-price="{{ entry.price }}"
+            data-item-url="{{ url('store') }}"
+            data-item-description="{{ entry.description }}">
+            <span class="f6 ttu tracked">Add to cart</span>
+          </a>
+          
+          <hr class="line mb4">
+      </article>
+    {% endfor %}
+  </div>
+{% endblock %}
