@@ -1,15 +1,19 @@
 {% extends "_layouts/site" %}
 
 {% block main %}
-  <div class="ph3 pt4 mw-narrow center">
-    <h1 class="f2 lh-solid mb2">Store</h1>
+  <div class="dt ph3 pt4 mw-narrow center w-100 border-box">
 
-    <div class="snipcart-summary mb4 f5 lh-copy links">
-      Number of items: <span class="snipcart-total-items"></span>
-      Total price: <span class="snipcart-total-price"></span>
-      <a href="#" class="snipcart-checkout">Checkout</a>
+    <div class="dtc w-50 mb4">
+      <h1 class="dtc f2 lh-solid mb2 w-50">Store</h1>
     </div>
 
+    <div class="dtc w-50 snipcart-summary mb4 f5 lh-copy links tr">
+      Cart (<span class="snipcart-total-items"></span>)
+      <a href="#" class="snipcart-checkout ml3">Checkout</a>
+    </div>
+
+  </div>
+  <div class="dt ph3 mw-narrow center">
     <hr class="line mb4">
 
     {% for entry in craft.entries.section('store').find() %}
