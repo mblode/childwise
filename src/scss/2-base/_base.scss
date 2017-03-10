@@ -1,3 +1,10 @@
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "liga" on;
+}
+
 p {
   margin-bottom: 2rem;
 }
@@ -37,6 +44,11 @@ p {
 
 p {
   margin-top: 0;
+}
+
+.link .f5,
+.link .f6 {
+  vertical-align: -webkit-baseline-middle;
 }
 
 .links a, {

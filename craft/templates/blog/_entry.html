@@ -4,8 +4,11 @@
 
 
 <article class="ph3 pt3-ns">
-  <h1 class="f3 f2-m f1-l tc lh-solid mw-large center mb4">{{entry.title | typogrify}}</h1>
-  <div class="mw-narrow center">
+  <section class="mw-large center">
+    <h1 class="f3 f2-m f1-l tc lh-solid mb4">{{entry.title | typogrify}}</h1>
+  </section>
+
+  <section class="mw-narrow center">
     <p class="f6 ttu tracked black-50 tc mb4">
       <span>By {{entry.author.fullName}}</span>
       &middot; 
@@ -13,49 +16,56 @@
       <span class="dn di-ns">{{ entry.postDate | date("F d, Y") }}</span>
     </p>
     <hr class="mb4 line">
-  </div>
+  </section>
 
   {% for block in entry.blog %}
 
     {% if block.type == "lead" %}
 
-      <div class="mw-narrow center links">
-        <div class="f4 lh-copy b mb4">{{block.lead | typogrify}}</div>
-      </div>
+      <section class="mw-narrow center">
+        <div class="f4 lh-copy b mb4 links">
+          {{block.lead | typogrify}}
+        </div>
+      </section>
 
     {% elseif block.type == "body" %}
 
-      <div class="f5 mw-narrow center lh-copy mb4 links">
-        {{block.body}}
-      </div>
+      <section class="mw-narrow center">
+        <div class="f5 lh-copy mb4 links">
+          {{block.body}}
+        </div>
+      </section>
 
     {% elseif block.type == "heading" %}
 
-      <div class="mw-narrow center">
-      <h3 class="{{block.headingSize}} mt0 mb3">{{block.heading | typogrify}}</h3>
-      </div>
+      <section class="mw-narrow center">
+        <h3 class="{{block.headingSize}} mt0 mb3">{{block.heading | typogrify}}</h3>
+      </section>
 
     {% elseif block.type == "quotation" %}
 
       {% if block.quotationStyle == 'pulling' %}
 
-        <blockquote class="mw7 center pr0 mt0 mb4">
-        <div class="f4 f3-ns lh-title links">{{block.quotation}}</div>
-          {% if block.cite | length %}
-            <cite class="f6 ttu tracked fs-normal black-50">―{{block.cite}}</cite>
-          {% endif %}
-        </blockquote>
+        <section class="mw7 center">
+          <blockquote class="pr0 mt0 mb4">
+            <div class="f4 f3-ns lh-title links">{{block.quotation}}</div>
+
+            {% if block.cite | length %}
+              <cite class="f6 ttu tracked fs-normal black-50">―{{block.cite}}</cite>
+            {% endif %}
+          </blockquote>
+        </section>
       
       {% elseif block.quotationStyle == 'blocking' %}
 
-        <div class="mw-narrow center mt0 mb4 pl0">
-          <blockquote class="ml-1 mr2 mv0 pl3 bl bw2 b--dark-gray">
+        <section class="mw-narrow center pl0">
+          <blockquote class="ml-1 mr2 mt0 mb4 pl3 bl bw2 b--dark-gray">
             <div class="f5 lh-copy links">{{block.quotation}}</div>
             {% if block.cite | length %}
               <cite class="f6 ttu tracked fs-normal black-50">―{{block.cite}}</cite>
             {% endif %}
           </blockquote>
-        </div>
+        </section>
 
       {% endif %}
 
@@ -72,10 +82,10 @@
 
       {% if block.photographPosition.contains('small') %}
         <figure class="mw6 center mb4">
-          <img class="w-100 lazyload mb3"
+          <img class="w-100 mb3"
           src="{{craft.imager.base64Pixel(2,1)}}"
-          data-sizes="100vw"
-          data-srcset="{{craft.imager.srcset(transformedImages)}}"
+          sizes="100vw"
+          srcset="{{craft.imager.srcset(transformedImages)}}"
           alt="">
           <figcaption class="f6 black-50 tc">{{block.caption}}</figcaption>
         </figure>
@@ -83,10 +93,10 @@
       {% elseif block.photographPosition.contains('center') %}
 
         <figure class="mw-narrow center mb4">
-          <img class="w-100 lazyload mb3"
+          <img class="w-100 mb3"
           src="{{craft.imager.base64Pixel(2,1)}}"
-          data-sizes="100vw"
-          data-srcset="{{craft.imager.srcset(transformedImages)}}"
+          sizes="100vw"
+          srcset="{{craft.imager.srcset(transformedImages)}}"
           alt="">
           <figcaption class="f6 black-50 tc">{{block.caption}}</figcaption>
         </figure>
@@ -94,10 +104,10 @@
       {% elseif block.photographPosition.contains('outsetCenter') %}
 
         <figure class="mw7 center mb4">
-          <img class="w-100 lazyload mb3"
+          <img class="w-100 mb3"
           src="{{craft.imager.base64Pixel(2,1)}}"
-          data-sizes="100vw"
-          data-srcset="{{craft.imager.srcset(transformedImages)}}"
+          sizes="100vw"
+          srcset="{{craft.imager.srcset(transformedImages)}}"
           alt="">
           <figcaption class="f6 black-50 tc">{{block.caption}}</figcaption>
         </figure>
@@ -106,23 +116,19 @@
 
     {% elseif block.type == "code" %}
 
-      <div class="mw-narrow center mb4">
-        <pre class="pre bg-black-05 pa3"><code class="f6">{{block.code}}</code></pre>
-      </div>
+      <section class="mw-narrow center">
+        <pre class="pre bg-black-05 pa3 mb4"><code class="f6">{{block.code}}</code></pre>
+      </section>
 
     {% elseif block.type == "divider" %}
 
-      <div class="mw-narrow center pt4 mb5">
+      <section class="mw-narrow center">
         {% if block.divider == 'dots' %}
-          <hr class="dots black-50 mv0">
+          <hr class="dots black-50 pt4 mt0 mb5">
         {% elseif block.divider == 'line' %}
-          <hr class="line mv0">
+          <hr class="line pt4 mt0 mb5">
         {% endif %}
-      </div>
-
-    {% elseif block.type == "lead" %}
-
-      <p class="f4">{{block.lead | typogrify}}</h3>
+      </section>
     
     {% elseif block.type == "video" %}
 
@@ -130,8 +136,8 @@
 
       {% set service = block.video|lower|replace('/(http:|https:|)\\/\\/(player.|www.)?(vimeo\\.com|youtu(be\\.com|\\.be|be\\.googleapis\\.com))\\/(video\\/|embed\\/|watch\\?v=|v\\/)?([A-Za-z0-9._%-]*)(\\&\\S+)?/', '$3') %}
 
-      <div class="mw-narrow center mb4">
-        <div class="aspect-ratio aspect-ratio--16x9 mw-narrow center">
+      <section class="mw-narrow center">
+        <div class="aspect-ratio aspect-ratio--16x9 mb4">
           {% if 'youtu' in service %}
       
             <iframe src="https://www.youtube.com/embed/{{id}}" frameborder="0" allowFullScreen class="aspect-ratio--object"></iframe>
@@ -142,7 +148,7 @@
           
           {% endif %}
         </div>
-      </div>
+      </section>
 
     {% endif %}
 
