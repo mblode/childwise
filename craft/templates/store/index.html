@@ -1,19 +1,25 @@
 {% extends "_layouts/site" %}
 
 {% block main %}
-  <div class="dt ph3 pt4 mw-narrow center w-100 border-box">
+  <div class="cont-s ph3 pt4">
+    <div class="flex justify-between">
+      <h1 class="items-center f2 lh-solid mb4">
+        Store
+      </h1>
 
-    <div class="dtc w-50 mb4">
-      <h1 class="dtc f2 lh-solid mb2 w-50">Store</h1>
+      <div class="flex items-center">
+        <ul class="snipcart-summary list tr ma0 pa0">
+          <li class="dib ml3 ml4-ns">
+            <span class="f5">Cart (<span class="snipcart-total-items"></span>)</span>
+          </li>
+          <li class="dib ml3 ml4-ns links">
+            <a href="#" class="snipcart-checkout black-80 f5">Checkout</a>
+          </li>
+        </ul>
+      </div>
     </div>
-
-    <div class="dtc w-50 snipcart-summary mb4 f5 lh-copy links tr">
-      Cart (<span class="snipcart-total-items"></span>)
-      <a href="#" class="snipcart-checkout ml3">Checkout</a>
-    </div>
-
   </div>
-  <div class="dt ph3 mw-narrow center">
+  <div class="dt ph3 cont-s">
     <hr class="line mb4">
 
     {% for entry in craft.entries.section('store').find() %}
@@ -23,7 +29,7 @@
 
           <p class="f3 lh-copy mb2 black-50 b">${{entry.price}}</p>
           <a href="#"
-            class="snipcart-add-item link dim dib ba ph3 pv2 black-80 mb4"
+            class="snipcart-add-item btn"
             data-item-id="{{ entry.slug }}"
             data-item-name="{{ entry.title }}"
             data-item-price="{{ entry.price }}"

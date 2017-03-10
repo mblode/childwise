@@ -3,12 +3,12 @@
 {% block main %}
 
 
-<article class="ph3 pt3-ns">
-  <section class="mw-large center">
+<article class="pt3-ns">
+  <section class="cont ph3">
     <h1 class="f3 f2-m f1-l tc lh-solid mb4">{{entry.title | typogrify}}</h1>
   </section>
 
-  <section class="mw-narrow center">
+  <section class="cont-s ph3">
     <p class="f6 ttu tracked black-50 tc mb4">
       <span>By {{entry.author.fullName}}</span>
       &middot; 
@@ -22,23 +22,23 @@
 
     {% if block.type == "lead" %}
 
-      <section class="mw-narrow center">
-        <div class="f4 lh-copy b mb4 links">
+      <section class="cont-s ph3">
+        <div class="f4 b mb4 links">
           {{block.lead | typogrify}}
         </div>
       </section>
 
     {% elseif block.type == "body" %}
 
-      <section class="mw-narrow center">
-        <div class="f5 lh-copy mb4 links">
+      <section class="cont-s ph3">
+        <div class="f5 mb4 links">
           {{block.body}}
         </div>
       </section>
 
     {% elseif block.type == "heading" %}
 
-      <section class="mw-narrow center">
+      <section class="cont-s ph3">
         <h3 class="{{block.headingSize}} mt0 mb3">{{block.heading | typogrify}}</h3>
       </section>
 
@@ -46,9 +46,9 @@
 
       {% if block.quotationStyle == 'pulling' %}
 
-        <section class="mw7 center">
-          <blockquote class="pr0 mt0 mb4">
-            <div class="f4 f3-ns lh-title links">{{block.quotation}}</div>
+        <section class="cont-s ph3">
+          <blockquote class="mr0 mb4">
+            <div class="f4 f3-ns links i">{{block.quotation}}</div>
 
             {% if block.cite | length %}
               <cite class="f6 ttu tracked fs-normal black-50">―{{block.cite}}</cite>
@@ -58,9 +58,9 @@
       
       {% elseif block.quotationStyle == 'blocking' %}
 
-        <section class="mw-narrow center pl0">
+        <section class="cont-s ph3 pl0">
           <blockquote class="ml-1 mr2 mt0 mb4 pl3 bl bw2 b--dark-gray">
-            <div class="f5 lh-copy links">{{block.quotation}}</div>
+            <div class="f5 links">{{block.quotation}}</div>
             {% if block.cite | length %}
               <cite class="f6 ttu tracked fs-normal black-50">―{{block.cite}}</cite>
             {% endif %}
@@ -81,52 +81,56 @@
       { format: 'jpg', allowUpscale: false, mode: 'crop', jpegQuality: 80, position: image.focusPctX ~ '% ' ~ image.focusPctY ~ '%', interlace: true } ) %}
 
       {% if block.photographPosition.contains('small') %}
-        <figure class="mw6 center mb4">
-          <img class="w-100 mb3"
-          src="{{craft.imager.base64Pixel(2,1)}}"
-          sizes="100vw"
-          srcset="{{craft.imager.srcset(transformedImages)}}"
-          alt="">
-          <figcaption class="f6 black-50 tc">{{block.caption}}</figcaption>
-        </figure>
+        <div class="cont-xs ph3">
+          <figure class="ma0 mb4">
+            <img class="w-100 mb3"
+            src="{{craft.imager.base64Pixel(2,1)}}"
+            sizes="100vw"
+            srcset="{{craft.imager.srcset(transformedImages)}}"
+            alt="">
+            <figcaption class="f6 black-50 tc">{{block.caption}}</figcaption>
+          </figure>
+        </div>
 
       {% elseif block.photographPosition.contains('center') %}
-
-        <figure class="mw-narrow center mb4">
-          <img class="w-100 mb3"
-          src="{{craft.imager.base64Pixel(2,1)}}"
-          sizes="100vw"
-          srcset="{{craft.imager.srcset(transformedImages)}}"
-          alt="">
-          <figcaption class="f6 black-50 tc">{{block.caption}}</figcaption>
-        </figure>
+        <div class="cont-s ph3-ns">
+          <figure class="ma0 mb4">
+            <img class="w-100 mb3"
+            src="{{craft.imager.base64Pixel(2,1)}}"
+            sizes="100vw"
+            srcset="{{craft.imager.srcset(transformedImages)}}"
+            alt="">
+            <figcaption class="f6 black-50 tc">{{block.caption}}</figcaption>
+          </figure>
+        </div>
 
       {% elseif block.photographPosition.contains('outsetCenter') %}
-
-        <figure class="mw7 center mb4">
-          <img class="w-100 mb3"
-          src="{{craft.imager.base64Pixel(2,1)}}"
-          sizes="100vw"
-          srcset="{{craft.imager.srcset(transformedImages)}}"
-          alt="">
-          <figcaption class="f6 black-50 tc">{{block.caption}}</figcaption>
-        </figure>
+        <div class="cont ph3-ns">
+          <figure class="ma0 mb4">
+            <img class="w-100 mb3"
+            src="{{craft.imager.base64Pixel(2,1)}}"
+            sizes="100vw"
+            srcset="{{craft.imager.srcset(transformedImages)}}"
+            alt="">
+            <figcaption class="f6 black-50 tc">{{block.caption}}</figcaption>
+          </figure>
+        </div>
 
       {% endif %}
 
     {% elseif block.type == "code" %}
 
-      <section class="mw-narrow center">
+      <section class="cont-s">
         <pre class="pre bg-black-05 pa3 mb4"><code class="f6">{{block.code}}</code></pre>
       </section>
 
     {% elseif block.type == "divider" %}
 
-      <section class="mw-narrow center">
+      <section class="cont-s pt4 ph3">
         {% if block.divider == 'dots' %}
-          <hr class="dots black-50 pt4 mt0 mb5">
+          <hr class="dots black-50 mt0 mb5">
         {% elseif block.divider == 'line' %}
-          <hr class="line pt4 mt0 mb5">
+          <hr class="line mt0 mb5">
         {% endif %}
       </section>
     
@@ -136,7 +140,7 @@
 
       {% set service = block.video|lower|replace('/(http:|https:|)\\/\\/(player.|www.)?(vimeo\\.com|youtu(be\\.com|\\.be|be\\.googleapis\\.com))\\/(video\\/|embed\\/|watch\\?v=|v\\/)?([A-Za-z0-9._%-]*)(\\&\\S+)?/', '$3') %}
 
-      <section class="mw-narrow center">
+      <section class="cont-s ph3">
         <div class="aspect-ratio aspect-ratio--16x9 mb4">
           {% if 'youtu' in service %}
       
