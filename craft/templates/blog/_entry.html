@@ -31,7 +31,7 @@
     {% elseif block.type == "body" %}
 
       <section class="cont-s ph3">
-        <div class="f5 mb4 links">
+        <div class="f5 mb4 links {% if block.dropCap %}drop{% endif %}">
           {{block.body}}
         </div>
       </section>
@@ -83,7 +83,7 @@
       {% if block.photographPosition.contains('small') %}
         <div class="cont-xs ph3">
           <figure class="ma0 mb4">
-            <img class="w-100 mb3"
+            <img class="w-100"
             src="{{craft.imager.base64Pixel(2,1)}}"
             sizes="100vw"
             srcset="{{craft.imager.srcset(transformedImages)}}"
@@ -95,7 +95,7 @@
       {% elseif block.photographPosition.contains('center') %}
         <div class="cont-s ph3-ns">
           <figure class="ma0 mb4">
-            <img class="w-100 mb3"
+            <img class="w-100"
             src="{{craft.imager.base64Pixel(2,1)}}"
             sizes="100vw"
             srcset="{{craft.imager.srcset(transformedImages)}}"
@@ -107,7 +107,7 @@
       {% elseif block.photographPosition.contains('outsetCenter') %}
         <div class="cont ph3-ns">
           <figure class="ma0 mb4">
-            <img class="w-100 mb3"
+            <img class="w-100"
             src="{{craft.imager.base64Pixel(2,1)}}"
             sizes="100vw"
             srcset="{{craft.imager.srcset(transformedImages)}}"

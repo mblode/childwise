@@ -24,10 +24,6 @@ body {
   max-width: 1000px;
 }
 
-p {
-  margin-bottom: 2rem;
-}
-
 .ml-1 {
   margin-left: -1rem;
 }
@@ -50,36 +46,9 @@ p {
   top: -26px;
 }
 
-.f1,
-.f2 {
-  line-height: 1.1;
-}
-
-.f3 {
-  line-height: 1.2;
-}
-
-.f4 {
-  line-height: 1.45;
-}
-
-@media screen and (max-width: 30em) {
-  .f5 {
-    font-size: 1.125rem;
-  }
-
-  .f4 {
-    font-size: 1.375rem;
-  }
-}
-
 .line {
   border: none;
   border-top: 1px solid rgba(0, 0, 0, 0.12);
-}
-
-p {
-  margin-top: 0;
 }
 
 .links a, {

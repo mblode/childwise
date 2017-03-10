@@ -1,0 +1,52 @@
+p {
+  margin-top: 0;
+  margin-bottom: 2rem;
+  letter-spacing: -.003em;
+}
+
+li {
+  letter-spacing: -0.003em;
+}
+
+.f1,
+.f2 {
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.f3 {
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.f4 {
+  line-height: 1.45;
+  letter-spacing: -0.018em;
+}
+
+.drop > p:first-child::first-letter {
+  float: left;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 4.23rem;
+  padding-top: 7px;
+  margin-left: 0;
+  margin-right: 7px;
+  letter-spacing: -0.03em;
+  line-height: 0.83;
+  margin-bottom: -0.08em;
+}
+
+@media screen and (max-width: 30em) {
+  .f5 {
+    font-size: 1.125rem;
+  }
+
+  .f4 {
+    font-size: 1.375rem;
+  }
+
+  .drop > p:first-child::first-letter {
+    font-size: 3.83rem;
+  }
+}
