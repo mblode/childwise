@@ -3,7 +3,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-feature-settings: "liga" on;
-  line-height: 1.5;
+  line-height: 1.58;
 }
 
 .cont-xs {
@@ -48,6 +48,19 @@ p {
   margin-left: 0.6em;
   position: relative;
   top: -26px;
+}
+
+.f1,
+.f2 {
+  line-height: 1.1;
+}
+
+.f3 {
+  line-height: 1.2;
+}
+
+.f4 {
+  line-height: 1.45;
 }
 
 @media screen and (max-width: 30em) {
