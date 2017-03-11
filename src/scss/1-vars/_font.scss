@@ -1,0 +1,30 @@
+@font-face {
+  font-family: 'Crimson';
+  src:
+    url('../fonts/crimson-bold-webfont.woff2') format('woff2'),
+    url('../fonts/crimson-bold-webfont.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Crimson';
+  src:
+    url('../fonts/crimson-roman-webfont.woff2') format('woff2'),
+    url('../fonts/crimson-roman-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Crimson';
+  src:
+    url('../fonts/crimson-italic-webfont.woff2') format('woff2'),
+    url('../fonts/crimson-italic-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: italic;
+}
+
+.custom-serif {
+  font-family: 'Crimson', georgia, times, serif;
+}

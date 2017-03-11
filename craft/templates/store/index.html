@@ -1,21 +1,29 @@
 {% extends "_layouts/site" %}
 
+{% set btn = {
+  outline: "link dim dib ba ph3 pv2 black-80 mb4"
+} %}
+
 {% block main %}
   <div class="cont-s ph3 pt4">
-    <div class="flex justify-between">
-      <h1 class="items-center f2 lh-solid mb4">
-        Store
-      </h1>
+    <div class="row between-xs bottom-xs">
+      <div class="col-xs-6">
+        <div class="box">
+          <h1 class="items-center f2 lh-solid mb0">Store</h1>
+        </div>
+      </div>
 
-      <div class="flex items-center">
-        <ul class="snipcart-summary list tr ma0 pa0">
-          <li class="dib ml3 ml4-ns">
-            <span class="f5">Cart (<span class="snipcart-total-items"></span>)</span>
-          </li>
-          <li class="dib ml3 ml4-ns links">
-            <a href="#" class="snipcart-checkout black-80 f5">Checkout</a>
-          </li>
-        </ul>
+      <div class="col-xs-6">
+        <div class="box">
+          <ul class="snipcart-summary list tr ma0 pa0">
+            <li class="dib ml3 ml4-ns">
+              <span class="f5">Cart (<span class="snipcart-total-items"></span>)</span>
+            </li>
+            <li class="dib ml3 ml4-ns links">
+              <a href="#" class="snipcart-checkout black-80 f5">Checkout</a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -29,7 +37,7 @@
 
           <p class="f3 lh-copy mb2 black-50 b">${{entry.price}}</p>
           <a href="#"
-            class="snipcart-add-item btn"
+            class="snipcart-add-item {{btn.outline}}"
             data-item-id="{{ entry.slug }}"
             data-item-name="{{ entry.title }}"
             data-item-price="{{ entry.price }}"

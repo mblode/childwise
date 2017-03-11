@@ -1,0 +1,87 @@
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+  font-kerning: auto;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 2rem;
+  font-feature-settings: 'kern', 'onum', 'liga';
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-feature-settings: 'dlig', 'liga', 'lnum', 'kern';
+}
+
+.f1,
+.f1-ns,
+.f1-m,
+.f1-l {
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+
+.f2,
+.f2-ns,
+.f2-m,
+.f2-l {
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.f3,
+.f3-ns,
+.f3-m,
+.f3-l {
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.f4,
+.f4-ns,
+.f4-m,
+.f4-l {
+  line-height: 1.25;
+  padding-top: 0;
+}
+
+.drop > p:first-child::first-letter {
+  float: left;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 3.7rem;
+  padding-top: 11px;
+  margin-left: 0;
+  margin-right: 7px;
+  letter-spacing: -0.03em;
+  line-height: 0.83;
+  margin-bottom: -0.08em;
+}
+
+@media screen and (max-width: 30em) {
+  .f5 {
+    font-size: 1.125rem;
+  }
+
+  .f4 {
+    font-size: 1.375rem;
+  }
+
+  .drop > p:first-child::first-letter {
+    font-size: 3.3rem;
+  }
+}

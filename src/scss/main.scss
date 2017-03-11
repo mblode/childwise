@@ -1,7 +1,9 @@
 @charset 'utf-8';
 
-@import '1-utils/flexboxgrid';
-@import '2-tachyons/tachyons';
-@import '3-base/font';
-@import '3-base/base';
-@import '3-base/type';
+@import '1-vars/font';
+@import '1-vars/vars';
+@import '2-vendor/flexboxgrid';
+@import '2-vendor/tachyons';
+@import '3-tachyons-extend/tachyons-extend';
+@import '4-base/base';
+@import '4-base/type';

@@ -1,3 +1,8 @@
+{% set nav = {
+  item: "dib ml3 ml4-ns",
+  link: "link dim black-80 f5"
+} %}
+
 <div class="cont pa3 bb b-black-80">
   <div class="row between-xs">
     <div class="col-xs-4">
@@ -10,14 +15,14 @@
     <div class="col-xs-8">
       <div class="box">
         <ul class="list tr ma0 pa0">
-          <li class="dib ml3 ml4-ns">
-            <a class="link dim black-80 f5" href="{{siteUrl}}">Blog</a>
+          <li class="{{nav.item}}">
+            <a class="{{nav.link}}" href="{{siteUrl}}">Blog</a>
           </li>
-          <li class="dib ml3 ml4-ns">
-            <a class="link dim black-80 f5" href="{{siteUrl}}about">About</a>
+          <li class="{{nav.item}}">
+            <a class="{{nav.link}}" href="{{siteUrl}}about">About</a>
           </li>
-          <li class="dib ml3 ml4-ns">
-            <a class="link dim black-80 f5" href="{{siteUrl}}store">Store</a>
+          <li class="{{nav.item}}">
+            <a class="{{nav.link}}" href="{{siteUrl}}store">Store</a>
           </li>
         </ul>
       </div>
