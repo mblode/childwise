@@ -8,6 +8,8 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-variant-ligatures: common-ligatures;
+  font-feature-settings: "liga", "clig", "dlig", "lnum", "kern", "calt";
   line-height: 1.5;
   font-kerning: auto;
 }
@@ -15,16 +17,6 @@ body {
 p {
   margin-top: 0;
   margin-bottom: 2rem;
-  font-feature-settings: 'kern', 'onum', 'liga';
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-feature-settings: 'dlig', 'liga', 'lnum', 'kern';
 }
 
 .f1,
@@ -84,4 +76,10 @@ h6 {
   .drop > p:first-child::first-letter {
     font-size: 3.3rem;
   }
+}
+
+.sc {
+  font-variant: small-caps;
+  font-variant-caps: small-caps;
+  font-feature-settings: 'tnum';
 }

@@ -10,10 +10,10 @@
 
   <section class="cont-s ph3">
     <p class="f6 ttu tracked black-50 tc mb4">
-      <span>By {{entry.author.fullName}}</span>
+      <span class="sc">By {{entry.author.fullName}}</span>
       &middot; 
-      <span class="di dn-ns">{{ entry.postDate | date("M d, Y") }}</span>
-      <span class="dn di-ns">{{ entry.postDate | date("F d, Y") }}</span>
+      <span class="di dn-ns sc">{{ entry.postDate | date("M d, Y") }}</span>
+      <span class="dn di-ns sc">{{ entry.postDate | date("F d, Y") }}</span>
     </p>
     <hr class="mb4 line">
   </section>
@@ -23,7 +23,7 @@
     {% if block.type == "lead" %}
 
       <section class="cont-s ph3">
-        <div class="f4 b mb4 links">
+        <div class="f4 mb4 links">
           {{block.lead | typogrify}}
         </div>
       </section>
