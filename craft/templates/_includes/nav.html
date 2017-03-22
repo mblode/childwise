@@ -3,7 +3,7 @@
   link: "link dim black-80 f5"
 } %}
 
-<div class="cont pa3 bb b-black-80">
+<div class="cont pa3 bb b-black-80" id="nav-menu">
   <div class="row between-xs">
     <div class="col-xs-4">
       <div class="box">
@@ -14,7 +14,21 @@
     </div>
     <div class="col-xs-8">
       <div class="box">
+
         <ul class="list tr ma0 pa0">
+          <li class="{{nav.item}}">
+            <autocomplete
+            id="searchbox"
+            url="/api/search"
+            anchor="title"
+            label="blogSummary"
+            placeholder="search"
+            min="1"
+            :on-select="itemSelected"
+            :process="processJsonData"
+            >
+            </autocomplete>
+          </li>
           <li class="{{nav.item}}">
             <a class="{{nav.link}}" href="{{siteUrl}}">Blog</a>
           </li>

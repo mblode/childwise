@@ -45,23 +45,37 @@ gulp.task('css', function () {
 gulp.task('js', function (){
   return gulp.src(
     [
-      folder.src + 'js/main.js',
       folder.src + 'js/**/*.js',
 
     ])
-    .pipe(concat('main.js'))
     .pipe(stripdebug())
     .pipe(uglify())
+    .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest(folder.build + 'js/'))
     .pipe(browserSync.reload({ stream: true }));
 });
 
+gulp.task('inlinejs', function (){
+  return gulp.src(
+    [
+      folder.src + 'inlinejs/**/*.js',
+
+    ])
+    .pipe(stripdebug())
+    .pipe(uglify())
+    .pipe(rename({ suffix: '.min' }))
+    .pipe(gulp.dest('craft/templates/_inlinejs/'))
+    .pipe(browserSync.reload({ stream: true }));
+});
+
 // run all tasks
-gulp.task('run', ['css', 'js']);
+gulp.task('run', ['css', 'js', 'inlinejs']);
 
 gulp.task('watch', ['browser-sync'], function (){
   // javascript changes
   gulp.watch(folder.src + 'js/**/*', ['js']);
+  // javascript changes
+  gulp.watch(folder.src + 'inlinejs/**/*', ['inlinejs']);
   // css changes
   gulp.watch(folder.src + 'scss/**/*', ['css']);
 

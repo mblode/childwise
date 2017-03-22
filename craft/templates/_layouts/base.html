@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-AU">
 <head>
   {% block head %}
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    {#<link rel="apple-touch-icon" sizes="180x180" href="{{siteUrl}}apple-touch-icon.png?v=4">
-    <link rel="icon" type="image/png" href="{{siteUrl}}favicon-32x32.png?v=4" sizes="32x32">
-    <link rel="icon" type="image/png" href="{{siteUrl}}favicon-16x16.png?v=4" sizes="16x16">
-    <link rel="manifest" href="{{siteUrl}}manifest.json?v=4">
-    <link rel="mask-icon" href="{{siteUrl}}safari-pinned-tab.svg?v=4" color="#3F4BA0">
-    <meta name="theme-color" content="#3F4BA0">#}
-    
-    <link rel="stylesheet" href="{{siteUrl}}assets/css/main.css">
+  {#<link rel="apple-touch-icon" sizes="180x180" href="{{siteUrl}}apple-touch-icon.png?v=4">
+  <link rel="icon" type="image/png" href="{{siteUrl}}favicon-32x32.png?v=4" sizes="32x32">
+  <link rel="icon" type="image/png" href="{{siteUrl}}favicon-16x16.png?v=4" sizes="16x16">
+  <link rel="manifest" href="{{siteUrl}}manifest.json?v=4">
+  <link rel="mask-icon" href="{{siteUrl}}safari-pinned-tab.svg?v=4" color="#3F4BA0">
+  <meta name="theme-color" content="#3F4BA0">#}
+  
+  <link rel="stylesheet" href="{{siteUrl}}assets/css/main.css">
+
+  <script>
+  {{ source('_inlinejs/register-service-worker.min.js') }}
+  
+  {{ source('_inlinejs/loadjs.min.js') }}
+  </script>
   {% endblock %}
 </head>
 <body class="w-100 custom-serif black-80 bg-white">
@@ -20,15 +26,62 @@
   {% block body %}{% endblock %}
   {% block foot %}{% endblock %}
 
-  <script
-  src="https://code.jquery.com/jquery-3.1.1.min.js"
-  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-  crossorigin="anonymous"></script>
+  <script>
+    // define a dependency bundle
+    loadjs(
+      [
+        '{{siteUrl}}assets/js/vue.min.js',
+      ],
+      'vue'
+    );
+    loadjs(
+      [
+        '{{siteUrl}}assets/js/vue2-autocomplete.min.js',
+      ],
+      'vue-autocomplete'
+    );
+    loadjs.ready(['vue', 'vue-autocomplete'], {
+      success: function() {
+        new Vue({
+          el: '#nav-menu',
+          components: {
+            autocomplete: Vue2Autocomplete
+          },
+          delimiters: ['${', '}'],
+          data: {
+            menuOpen: false,
+          },
+          methods: {
+            prerenderLink: function(e) {
+              var head = document.getElementsByTagName("head")[0];
+              var refs = head.childNodes;
+              ref = refs[ refs.length - 1];
 
-  <script src="{{siteUrl}}assets/js/main.js" async defer></script>
-  
-  <script src="https://cdn.snipcart.com/scripts/2.0/snipcart.js" data-api-key="ZDhhOTU0NzktZDBmYy00OWFhLTlhMGYtOWRlYmY3OWNkNzdiNjM1OTEwMjcwODc4MDI3NjAy" id="snipcart"></script>
+              var elements = head.getElementsByTagName("link");
+              Array.prototype.forEach.call(elements, function(el, i) {
+                if (("rel" in el) && (el.rel === "prerender"))
+                  el.parentNode.removeChild(el);
+              });
 
-  <link href="https://cdn.snipcart.com/themes/2.0/base/snipcart.min.css" rel="stylesheet" type="text/css" />
+              var prerenderTag = document.createElement("link");
+              prerenderTag.rel = "prerender";
+              prerenderTag.href = e.currentTarget.href;
+              ref.parentNode.insertBefore(prerenderTag,  ref);
+            },
+            toggle: function() {
+              this.menuOpen = !this.menuOpen;
+            },
+            itemSelected: function(data) {
+              window.location.href = data.url;
+            },
+            processJsonData: function(json) {
+              return json.data;
+            }
+          },
+        });
+      }
+    });
+  </script>
+
 </body>
 </html>

@@ -21,6 +21,10 @@ return array(
             'baseUrl'  => getenv('CRAFTENV_BASE_URL'),
             'basePath' => getenv('CRAFTENV_BASE_PATH'),
         ),
+        'defaultSearchTermOptions' => array(
+            'subLeft' => true,
+            'subRight' => true,
+        ),
     ),
     // Live (production) environment
     'live'  => array(

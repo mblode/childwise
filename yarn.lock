@@ -4234,6 +4234,16 @@ vlq@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/vlq/-/vlq-0.2.1.tgz#14439d711891e682535467f8587c5630e4222a6c"
 
+"vue2-autocomplete@git://github.com/nystudio107/vue2-autocomplete.git#master":
+  version "0.0.5"
+  resolved "git://github.com/nystudio107/vue2-autocomplete.git#95844831fd8c8e514249b4b87632dab3a20520ee"
+  dependencies:
+    vue ""
+
+vue@:
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/vue/-/vue-2.2.4.tgz#d0a3a050a80a12356d7950ae5a7b3131048209cc"
+
 weinre@^2.0.0-pre-I0Z7U9OV:
   version "2.0.0-pre-I0Z7U9OV"
   resolved "https://registry.yarnpkg.com/weinre/-/weinre-2.0.0-pre-I0Z7U9OV.tgz#fef8aa223921f7b40bbbbd4c3ed4302f6fd0a813"
